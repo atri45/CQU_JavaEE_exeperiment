@@ -28,9 +28,9 @@ public class QueryController extends BaseController{
                 add(new Menu("query all classes' score","manage -c query/allclass -p <order rule>"));
             }
         };
-        System.out.println("*****************************************************************");
-        System.out.println("                          Query Score");
-        System.out.println("*****************************************************************");
+        System.out.println("****************************************************************************************");
+        System.out.println("                                    Query Score");
+        System.out.println("****************************************************************************************");
         System.out.format("%-35s %-30s \n", "Function", "Command");
         for(Menu menu : menuList){
             System.out.format("%-35s %-30s \n", menu.getName(), menu.getCommand());
@@ -68,12 +68,12 @@ public class QueryController extends BaseController{
 
     public void viewStudents(List<QueryResult> queryResults){
         if (!queryResults.isEmpty()) {
-            System.out.format("--------------------------------------------------------------------------\n");
-            System.out.format("| %-4s |   %-4s |  %-4s| %-4s | %-4s | %-4s | %-4s | %-4s |\n", "学生Id","姓名", "课程", "平时成绩", "期中成绩", "实验成绩", "期末成绩", "综合成绩");
-            System.out.format("--------------------------------------------------------------------------\n");
+            System.out.format("--------------------------------------------------------------------------------------------------\n");
+            System.out.format("|%-9s| %-7s |%-6s|%-12s|%-8s|%-17s|%-10s|%-18s|\n", "StudentId", "Student", "Course", "RegularScore", "MidScore", "ExperimentalScore", "FinalScore", "ComprehensiveScore");
+            System.out.format("--------------------------------------------------------------------------------------------------\n");
             for (QueryResult queryResult : queryResults) {
-                System.out.format("| %-5s | %-6s | %-6s | %-6s | %-6s | %-6s | %-6s | %-6s |\n", queryResult.getStudentId(), queryResult.getStudentName(), queryResult.getCourseName(), queryResult.getRegularScore(), queryResult.getMidScore(), queryResult.getExperimentalScore(), queryResult.getFinalScore(), queryResult.getComprehensiveScore());
-                System.out.format("--------------------------------------------------------------------------\n");
+                System.out.format("| %-7s |%-9s|%-6s| %-10s | %-6s | %-15s | %-8s | %-16s |\n", queryResult.getStudentId(), queryResult.getStudentName(), queryResult.getCourseName(), queryResult.getRegularScore(), queryResult.getMidScore(), queryResult.getExperimentalScore(), queryResult.getFinalScore(), queryResult.getComprehensiveScore());
+                System.out.format("--------------------------------------------------------------------------------------------------\n");
             }
         }
         else {
@@ -83,12 +83,12 @@ public class QueryController extends BaseController{
 
     public void viewCourses(List<QueryResult> queryResults){
         if (!queryResults.isEmpty()) {
-            System.out.format("--------------------------------------------------------------------------\n");
-            System.out.format("| %-4s |  %-4s|   %-4s | %-4s | %-4s | %-4s | %-4s | %-4s |\n", "课程Id","课程", "学生", "平时成绩", "期中成绩", "实验成绩", "期末成绩", "综合成绩");
-            System.out.format("--------------------------------------------------------------------------\n");
+            System.out.format("--------------------------------------------------------------------------------------------------\n");
+            System.out.format("|%-9s|%-6s| %-7s |%-12s|%-8s|%-17s|%-10s|%-18s|\n", "CourseId", "Course", "Student", "RegularScore", "MidScore", "ExperimentalScore", "FinalScore", "ComprehensiveScore");
+            System.out.format("--------------------------------------------------------------------------------------------------\n");
             for (QueryResult queryResult : queryResults) {
-                System.out.format("| %-5s | %-6s | %-6s | %-6s | %-6s | %-6s | %-6s | %-6s |\n", queryResult.getCourseId(), queryResult.getCourseName(), queryResult.getStudentName(), queryResult.getRegularScore(), queryResult.getMidScore(), queryResult.getExperimentalScore(), queryResult.getFinalScore(), queryResult.getComprehensiveScore());
-                System.out.format("--------------------------------------------------------------------------\n");
+                System.out.format("| %-7s |%-6s|%-9s| %-10s | %-6s | %-15s | %-8s | %-16s |\n", queryResult.getCourseId(), queryResult.getCourseName(), queryResult.getStudentName(), queryResult.getRegularScore(), queryResult.getMidScore(), queryResult.getExperimentalScore(), queryResult.getFinalScore(), queryResult.getComprehensiveScore());
+                System.out.format("--------------------------------------------------------------------------------------------------\n");
             }
         }
         else {
@@ -98,12 +98,12 @@ public class QueryController extends BaseController{
 
     public void viewClasses(List<QueryResult> queryResults){
         if (!queryResults.isEmpty()) {
-            System.out.format("--------------------------------------------------------------------------\n");
-            System.out.format("| %-4s |  %-4s|   %-4s | %-4s | %-4s | %-4s | %-4s | %-4s |\n", "班级Id","课程", "学生", "平时成绩", "期中成绩", "实验成绩", "期末成绩", "综合成绩");
-            System.out.format("--------------------------------------------------------------------------\n");
+            System.out.format("--------------------------------------------------------------------------------------------------\n");
+            System.out.format("|%-9s|%-6s| %-7s |%-12s|%-8s|%-17s|%-10s|%-18s|\n", "ClassId", "Course", "Student", "RegularScore", "MidScore", "ExperimentalScore", "FinalScore", "ComprehensiveScore");
+            System.out.format("--------------------------------------------------------------------------------------------------\n");
             for (QueryResult queryResult : queryResults) {
-                System.out.format("| %-5s | %-6s | %-6s | %-6s | %-6s | %-6s | %-6s | %-6s |\n", queryResult.getClassId(), queryResult.getCourseName(), queryResult.getStudentName(), queryResult.getRegularScore(), queryResult.getMidScore(), queryResult.getExperimentalScore(), queryResult.getFinalScore(), queryResult.getComprehensiveScore());
-                System.out.format("--------------------------------------------------------------------------\n");
+                System.out.format("| %-7s |%-6s|%-9s| %-10s | %-6s | %-15s | %-8s | %-16s |\n", queryResult.getClassId(), queryResult.getCourseName(), queryResult.getStudentName(), queryResult.getRegularScore(), queryResult.getMidScore(), queryResult.getExperimentalScore(), queryResult.getFinalScore(), queryResult.getComprehensiveScore());
+                System.out.format("--------------------------------------------------------------------------------------------------\n");
             }
         }
         else {

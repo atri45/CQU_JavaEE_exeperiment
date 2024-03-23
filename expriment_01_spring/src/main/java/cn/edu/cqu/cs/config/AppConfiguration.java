@@ -12,7 +12,7 @@ import java.sql.SQLException;
 @ComponentScan(basePackages={"cn.edu.cqu.cs"})
 public class AppConfiguration {
     @Bean
-    public DataSource dataSource() throws SQLException {
+    public DataSource dataSource() {
         return new DriverManagerDataSource(
                 "jdbc:mysql://localhost:3306/javaee1",
                 "root",

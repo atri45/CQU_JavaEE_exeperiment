@@ -1,12 +1,8 @@
 package cn.edu.cqu.cs.mapper;
 
-import cn.edu.cqu.cs.config.AppConfiguration;
 import cn.edu.cqu.cs.entity.QueryResult;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +51,6 @@ public class QueryDao extends BasicDao{
         }
         return null;
     }
-
 
     public List<QueryResult> queryCourses(int id, int order) {
         String sql = "";
