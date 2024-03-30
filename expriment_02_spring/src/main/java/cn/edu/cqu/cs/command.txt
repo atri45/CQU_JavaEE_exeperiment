@@ -1,0 +1,17 @@
+menu
+set -p D:\IdeaProjects\JavaEECourse
+list
+list -p name
+list -p name_desc
+list -p size
+list -p size_desc
+list -p time
+list -p time_desc
+view -p README.md
+copy -p D:\IdeaProjects\JavaEECourse\document D:\IdeaProjects\JavaEECourse\document2
+copy -p D:\IdeaProjects\JavaEECourse\document D:\IdeaProjects\JavaEECourse\document3 bg
+encrypt -p D:\IdeaProjects\JavaEECourse\README.md
+decrypt -p D:\IdeaProjects\JavaEECourse\README.md.encrypted D:\IdeaProjects\JavaEECourse\decrypt.md
+compress -p D:\IdeaProjects\JavaEECourse\document D:\IdeaProjects\JavaEECourse\document.zip
+decompress -p D:\IdeaProjects\JavaEECourse\document.zip D:\IdeaProjects\JavaEECourse\document3
+exit

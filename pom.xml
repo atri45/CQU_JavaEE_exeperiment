@@ -9,8 +9,9 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>expriment_01</module>
         <module>expriment_01_spring</module>
+        <module>expriment_02_spring</module>
+        <module>expriment_02_spring</module>
     </modules>
 
     <!--
