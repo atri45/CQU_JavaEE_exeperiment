@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>Login</title>
+		<link rel="stylesheet" type="text/css" href="assets/admin/layui/css/layui.css" />
+		<link rel="stylesheet" type="text/css" href="assets/admin/css/login.css" />
+		<script src="assets/js/aJaxUtil.js"></script>
+		<script src="assets/js/jquery-3.3.1.min.js"></script>
+	</head>
+
+	<body>
+		<div class="m-login-bg">
+			<div class="m-login">
+				<h3>Score Management System</h3>
+				<div class="m-login-warp">
+					<form class="layui-form">
+						<div class="layui-form-item">
+							<input type="text" name="userId" required lay-verify="required" placeholder="UserId" autocomplete="off" class="layui-input">
+						</div>
+						<div class="layui-form-item">
+							<input type="password" name="pass" required lay-verify="required" placeholder="Password" autocomplete="off" class="layui-input">
+						</div>
+						<div class="layui-form-item">
+							<input type="radio" name="type" value="1" title="Teacher" checked="">
+      						<input type="radio" name="type" value="2" title="Student">
+						</div>
+						<div class="layui-form-item m-login-btn">
+							<div class="layui-inline">
+								<button class="layui-btn layui-btn-normal" lay-submit lay-filter="login">Login</button>
+							</div>
+							<div class="layui-inline">
+								<button class="layui-btn layui-btn-normal" lay-submit lay-filter="signup">Signup</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<script src="assets/admin/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			layui.use(['form', 'layedit', 'laydate','jquery'], function() {
+				var form = layui.form,
+					layer = layui.layer,
+					$ = layui.jquery;
+
+				form.on('submit(login)', function(data) {
+					   var str = JSON.stringify(data.field);
+			            var param = JSON.parse(str);
+			     		if("1"==param.type){
+			     			$.ajax({
+				                    type: "POST",
+				                    dataType: "json",
+				                    url: "/user/teacherLogin",
+				                    data: param,
+				                    success: function (result) {
+				                    	if (result.code == "0") {
+						                       location.href="/index.html";
+						                    } else {
+						                        layer.msg('Login unsuccessfully', {
+						                            icon: 5
+						                        });
+						                    }
+				                    },
+				                    error : function() {
+				                    	layer.msg('Server error', {
+				                            icon: 5
+				                        });
+				                    }
+				                });
+			     		}else{
+			     			debugger;
+							$.ajax({
+									type: "POST",
+									dataType: "json",
+									url: "/user/studentLogin",
+									data: param,
+									success: function (result) {
+										if (result.code == "0") {
+											   location.href="/student-index.html";
+											} else {
+												layer.msg('Login unsuccessfully', {
+													icon: 5
+												});
+											}
+									},
+									error : function() {
+										layer.msg('Server error', {
+											icon: 5
+										});
+									}
+								});
+			     		}
+					return false;
+				});
+
+				form.on('submit(signup)', function(data) {
+					var str = JSON.stringify(data.field);
+					var param = JSON.parse(str);
+					if("1"==param.type){
+						$.ajax({
+							type: "POST",
+							dataType: "json",
+							url: "/user/teacherSignup",
+							data: param,
+							success: function (result) {
+								if (result.code == "0") {
+									location.href="/login.html";
+								} else {
+									layer.msg('Signup unsuccessfully', {
+										icon: 5
+									});
+								}
+							},
+							error : function() {
+								layer.msg('服务器错误', {
+									icon: 5
+								});
+							}
+						});
+					}else{
+						debugger;
+						$.ajax({
+							type: "POST",
+							dataType: "json",
+							url: "/user/studentSignup",
+							data: param,
+							success: function (result) {
+								if (result.code == "0") {
+									location.href="/login.html";
+								} else {
+									layer.msg('Signup unsuccessfully', {
+										icon: 5
+									});
+								}
+							},
+							error : function() {
+								layer.msg('Server error', {
+									icon: 5
+								});
+							}
+						});
+					}
+					return false;
+				});
+
+			});
+		</script>
+	</body>
+
+</html>

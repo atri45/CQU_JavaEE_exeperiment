@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.score.dao.ScoreMapper">
+	<resultMap id="BaseResultMap" type="com.score.bean.Score">
+		<id column="scoreId" property="scoreId" jdbcType="INTEGER" />
+		<result column="studentId" property="studentId" jdbcType="INTEGER" />
+		<result column="courseName" property="courseName" jdbcType="VARCHAR" />
+		<result column="classId" property="classId" jdbcType="INTEGER" />
+		<result column="regularScore" property="regularScore" jdbcType="INTEGER" />
+		<result column="midScore" property="midScore" jdbcType="INTEGER" />
+		<result column="experimentalScore" property="experimentalScore" jdbcType="INTEGER" />
+		<result column="finalScore" property="finalScore" jdbcType="INTEGER" />
+		<result column="comprehensiveScore" property="comprehensiveScore" jdbcType="INTEGER" />
+	</resultMap>
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		delete from score where scoreId = #{scoreId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.score.bean.Score">
+		insert into score (studentId, studentName, courseName, classId, regularScore, midScore, experimentalScore, finalScore, comprehensiveScore) values
+		(#{studentId}, (select name from student where studentId = #{studentId}), (select courseName from class where classId = #{classId}), #{classId}, #{regularScore}, #{midScore}, #{experimentalScore}, #{finalScore}, #{comprehensiveScore})
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.score.bean.Score">
+		update score set regularScore = #{regularScore}, midScore = #{midScore}, experimentalScore = #{experimentalScore}, finalScore = #{finalScore}, comprehensiveScore = #{comprehensiveScore}
+		where scoreId = #{scoreId}
+	</update>
+	<select id="selectByStudentId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select * from score where studentId = #{studentId,jdbcType=INTEGER}
+	</select>
+	<select id="selectByTeacherId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select * from score where classId in (select classId from class where teacherId =#{teacherId,jdbcType=INTEGER})
+	</select>
+	<select id="selectByFilter" resultMap="BaseResultMap" parameterType="com.score.bean.ScoreFilter">
+		select * from score where classId in (select classId from class where teacherId =#{teacherId,jdbcType=INTEGER})
+		<if test="courseName != null and courseName != ''">
+			and courseName = #{courseName}
+		</if>
+		<if test="studentName != null and studentName != ''">
+			and studentName =#{studentName}
+		</if>
+	</select>
+		<select id="selectBatchAdd" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select student.studentId, student.name as studentName, class.courseName, class.classId from studentclass, student, class where class.classId in (select classId from class where teacherId = #{teacherId}) and class.classId = studentclass.classId and studentclass.studentId = student.studentId
+	</select>
+		<delete id="deleteByTeacherId" parameterType="java.lang.Integer">
+		delete from score where classId in (select classId from class where teacherId =#{teacherId,jdbcType=INTEGER})
+	</delete>
+	<select id="countByType" resultType="java.lang.Integer"
+		parameterType="com.score.bean.Score">
+		select count(1)
+		from score
+		where score_type=#{scoreType}
+		and student_id=#{studentId}
+	</select>
+</mapper>

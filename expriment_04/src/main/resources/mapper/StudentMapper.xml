@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.score.dao.StudentMapper">
+  <resultMap id="BaseResultMap" type="com.score.bean.Student">
+    <result column="studentId" jdbcType="INTEGER" property="studentId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="grade" jdbcType="INTEGER" property="grade" />
+  </resultMap>
+
+
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select studentId, name, sex, grade
+    from student
+    where studentId = #{studentId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="com.score.bean.Student">
+    select *
+    from student
+    where 1=1
+    <if test="name !=null and name !=''">
+    	and name like concat('%',#{name},'%')
+    </if>
+  </select>
+    <select id="selectByTeacherId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select * from student where studentId in (select studentId from studentclass where classId in (select classId from class where teacherId = #{teacherId,jdbcType=INTEGER}))
+    </select>
+
+</mapper>

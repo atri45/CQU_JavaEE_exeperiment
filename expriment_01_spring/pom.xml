@@ -13,7 +13,7 @@
     <version>1.0-SNAPSHOT</version>
     <artifactId>expriment_01_spring</artifactId>
 
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <!--
         properties标签定义属性，在依赖或其他标签中可以使用${属性名}引用定义的属性值

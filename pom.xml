@@ -8,10 +8,16 @@
     <artifactId>JavaEECourse</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.2.RELEASE</version>
+    </parent>
     <modules>
         <module>expriment_01_spring</module>
         <module>expriment_02_spring</module>
         <module>expriment_03</module>
+        <module>expriment_04</module>
     </modules>
 
     <!--
