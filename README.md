@@ -1,7 +1,7 @@
 ### 实验一位于expriment_01_spring模块，运行前需要起mysql，配置信息看config/AppConfiguration
 ### 实验二位于expriment_02_spring模块
 ### 实验三位于expriment_03模块
-### 实验四位于expriment_04模块，运行前需要起mysql，配置信息看resources/application
+### 实验四位于expriment_04模块，运行前需要起mysql，配置信息看resources/application，sql文件看javaee4.sql
 ### 四个实验的视频请关注微信公众号(Atri45)，发送关键词（java实验视频）获取
 ### 觉得不错的话可以点个starred🥰，还可以看看我的另一个仓库 [CQU_CS-AI_learning_resources](https://github.com/atri45/CQU_CS_learning_resources) ，上面分享了各种学习资源👍。
 
